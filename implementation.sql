@@ -1,11 +1,11 @@
 CREATE TABLE country (
-    county_id SERIAL PRIMARY KEY,
-    county_name VARCHAR(30) NOT NULL
+    country_id SERIAL PRIMARY KEY,
+    country_name VARCHAR(30) NOT NULL
    );
 
 CREATE TABLE address (
     address_id SERIAL PRIMARY KEY,
-    county_id INT REFERENCES COUNTY(county_id),
+    country_id INT REFERENCES country(country_id),
     address_post_code VARCHAR(8) UNIQUE NOT NULL,
     address_name_one VARCHAR(50) NOT NULL,
     address_name_two VARCHAR(50)
@@ -26,7 +26,7 @@ CREATE TABLE BOAT (
     customer_id INT REFERENCES CUSTOMER(customer_id) NOT NULL UNIQUE
 );
 
--- Create the SERVICE table
+
 CREATE TABLE SERVICE (
     service_id SERIAL PRIMARY KEY,
     boat_id INT REFERENCES BOAT(boat_id) UNIQUE NOT NULL,
@@ -34,13 +34,13 @@ CREATE TABLE SERVICE (
      
 );
 
--- Create the TYPE table
+
 CREATE TABLE TYPE (
     type_id SERIAL PRIMARY KEY,
     type_name VARCHAR(255) NOT NULL
 );
 
--- Create the STAFF_SERVICE table
+
 CREATE TABLE STAFF_SERVICE (
     staff_id INT,
     service_id INT,
@@ -120,7 +120,7 @@ INSERT INTO country (country_name) VALUES
     ('Australia');
 
 
-INSERT INTO address (address_id, county_id, address_post_code, address_name_one, address_name_two) VALUES 
+INSERT INTO address (address_id, country_id, address_post_code, address_name_one, address_name_two) VALUES 
 (1, 2, '4775-225', 'Srebrenica', 'Room 789'),
 (2, 1, '4775-226', 'Kadugadung', 'Room 1022'),
 (3, 4, '4775-227', 'Komga', '10th Floor'),
@@ -130,7 +130,7 @@ INSERT INTO address (address_id, county_id, address_post_code, address_name_one,
 (7, 3, '4775-231', 'Monrovia', 'Suite 64'),
 (8, 4, '4775-232', 'Banjar Bucu', 'Suite 56'),
 (9, 2, '4775-233', 'Ponong', 'Room 774'),
-(10, 2, '4775-234', 'Kināna', 'Suite 18'); 
+(10, 2, '4775-234', 'Kināna', 'Suite 18'),
 (11, 3, '47752350', 'Palmitas', 'Apt 1067'),
 (12, 2, '85550000', 'Coronel Vivida', 'Suite 33'),
 (13, 1, '47752360', 'Souillac', '2nd Floor'),
@@ -140,7 +140,7 @@ INSERT INTO address (address_id, county_id, address_post_code, address_name_one,
 (17, 3, '47752380', 'Sedatiagung', 'Suite 32'),
 (18, 1, '47752390', 'Yangdu', 'Apt 1298'),
 (19, 2, '47752400', 'Peuteuy', 'Suite 82'),
-(20, 4, '47752410', 'Fenhe', '8th Floor'); 
+(20, 4, '47752410', 'Fenhe', '8th Floor'),
 (21, 1, '47752420', 'Joševa', 'Room 924'),
 (22, 1, '47752430', 'Minh Lương', 'Suite 52'),
 (23, 1, '16282500', 'Imeni Zhelyabova', 'Suite 85'),
@@ -150,7 +150,7 @@ INSERT INTO address (address_id, county_id, address_post_code, address_name_one,
 (27, 2, '47752470', 'Luokou', 'Room 519'),
 (28, 3, '60102100', 'Krasnyy Oktyabr’', 'PO Box 85502'),
 (29, 2, '47752480', 'Vạn Giã', 'Room 1994'),
-(30, 1, '62060000', 'Stęszew', 'PO Box 35957'); 
+(30, 1, '62060000', 'Stęszew', 'PO Box 35957'),
 (31, 2, '47752620', 'Rennes', 'Room 1425'),
 (32, 4, '47752630', 'Shanhe', '11th Floor'),
 (33, 2, '47752640', 'Novi Sad', 'PO Box 57320'),
@@ -170,7 +170,7 @@ INSERT INTO address (address_id, county_id, address_post_code, address_name_one,
 (47, 3, '47752780', 'Duma', 'PO Box 25677'),
 (48, 1, '47752790', 'Sihanoukville', '14th Floor'),
 (49, 2, '47752800', 'Baoyang', 'Room 87'),
-(50, 2, '47752810', 'San Ignacio de Tupile', 'Room 2000'); 
+(50, 2, '47752810', 'San Ignacio de Tupile', 'Room 2000'),
 (51, 2, '47752820', 'Stockholm', 'Apt 1108'),
 (52, 4, '47752830', 'Tungawan', 'PO Box 26343'),
 (53, 3, '47752840', 'Pudong', 'Room 1940'),
@@ -200,7 +200,7 @@ INSERT INTO address (address_id, county_id, address_post_code, address_name_one,
 (77, 2, '47753080', 'Chirpan', '12th Floor'),
 (78, 4, '47753090', 'Quimper', 'Suite 57'),
 (79, 1, '47753100', 'Sidi Yahia el Gharb', 'Apt 1736'),
-(80, 1, '47753110', 'Achadinha', 'PO Box 78869');
+(80, 1, '47753110', 'Achadinha', 'PO Box 78869'),
 (81, 3, '47753120', 'Dikirnis', 'Apt 1363'),
 (82, 3, '47753130', 'Vasyshcheve', 'PO Box 45365'),
 (83, 2, '50504010', 'Igreja', 'Room 375'),
@@ -326,3 +326,56 @@ INSERT INTO CUSTOMER (address_id, customer_fname, customer_lname, customer_tel, 
 (98, 'Lucas', 'Ward', '2223334450', 'lucas.ward@example.com', false),
 (99, 'Ava', 'Hill', '5556667793', 'ava.hill@example.com', true),
 (100, 'Liam', 'Taylor', '9998887791', 'liam.taylor@example.com', false);
+
+INSERT INTO boat(boat_id, customer_id) VALUES
+(1, 1261),
+(2, 1262),
+(3, 1261),
+(4, 1265),
+(5, 1270),
+(6, 1285),
+(7, 1299),
+(8, 1288),
+(9, 1275),
+(10, 1263),
+(11, 1278),
+(12, 1295),
+(13, 1267),
+(14, 1280),
+(15, 1290),
+(16, 1266),
+(17, 1298),
+(18, 1289),
+(19, 1273),
+(20, 1277),
+(21, 1261),
+(22, 1279),
+(23, 1292),
+(24, 1264),
+(25, 1274),
+(26, 1282),
+(27, 1297),
+(28, 1268),
+(29, 1283),
+(30, 1271),
+(31, 1269),
+(32, 1276),
+(33, 1291),
+(34, 1281),
+(35, 1261),
+(36, 1272),
+(37, 1296),
+(38, 1261),
+(39, 1286),
+(40, 1278),
+(41, 1293),
+(42, 1262),
+(43, 1294),
+(44, 1284),
+(45, 1261),
+(46, 1265),
+(47, 1290),
+(48, 1274),
+(49, 1267),
+(50, 1287);
+
