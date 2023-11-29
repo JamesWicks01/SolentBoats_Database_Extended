@@ -1,3 +1,9 @@
+--CREATES
+IF EXISTS DROP DATABASE grp21_solent;
+
+-- RESET DATABASE
+CREATE DATABASE grp21_solent;
+
 CREATE TABLE country (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(30) NOT NULL
