@@ -1,8 +1,40 @@
+-- this file is not done
+-- a few datatypes need tweaking
+-- and constraints also need adding i.e. UNIQUE
+
 --CREATES 
 
 IF EXISTS DROP DATABASE grp21_solent; -- RESET DATABASE
 
 CREATE DATABASE grp21_solent; -- CREATE
+
+-- ENUMS
+
+CREATE TYPE fuel AS ENUM(
+    'PETROL',
+    'DIESEL',
+    'HYBRID'
+);
+
+CREATE TYPE "desc" AS ENUM(
+    'SERVICE',
+    'CHECKUP',
+    'OTHER'
+);
+
+CREATE TYPE history_type AS ENUM(
+    'BOOKED',
+    'ONGOING',
+    'COMPLETE'
+);
+
+CREATE TYPE category_type AS ENUM(
+    'MINOR',
+    'SERIOUS',
+    'DANGEROUS'
+);
+
+-- TABLES
 
 CREATE TABLE country(
     country_id SERIAL PRIMARY KEY,
@@ -25,16 +57,25 @@ CREATE TABLE "address"(
     FOREIGN KEY (city_id) REFERENCES city(city_id)
 );
 
+CREATE TABLE yard(
+    yard_id SERIAL PRIMARY KEY,
+    address_id INT NOT NULL,
+    yard_size ? NOT NULL, -- fix
+    yard_name VARCHAR(64) NOT NULL,
+    yard_tel VARCHAR(20) NOT NULL,
+    yard_email VARCHAR(254) NOT NULL
+);
+
 CREATE TABLE customer(
     customer_id SERIAL PRIMARY KEY,
     address_id INT NOT NULL,
-    customer_fname VARCHAR(30) NOT NULL,
-    customer_mname VARCHAR(30),
-    customer_lname VARCHAR(30) NOT NULL,
+    customer_fname VARCHAR(64) NOT NULL,
+    customer_mname VARCHAR(64),
+    customer_lname VARCHAR(64) NOT NULL,
     customer_tel1 VARCHAR(20) NOT NULL,
     customer_tel2 VARCHAR(20),
-    customer_email1 VARCHAR(54) NOT NULL,
-    customer_email2 VARCHAR(54),
+    customer_email1 VARCHAR(254) NOT NULL,
+    customer_email2 VARCHAR(254),
     customer_priv BOOLEAN NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
@@ -42,5 +83,79 @@ CREATE TABLE customer(
 CREATE TABLE staff(
     staff_id SERIAL PRIMARY KEY,
     address_id INT NOT NULL,
-    staff_fname VARCHAR(64)
+    staff_fname VARCHAR(64) NOT NULL,
+    staff_mname VARCHAR(64),
+    staff_lname VARCHAR(64), NOT NULL,
+    staff_tel VARCHAR(20) NOT NULL,
+    staff_email VARCHAR(254) NOT NULL,
+    staff_wemail VARCHAR(254) NOT NULL
+);
+
+CREATE TABLE "role"( 
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE staff_role(
+    staff_id INT NOT NULL,
+    role_id INT NOT NULL,
+    PRIMARY KEY (staff_id, role_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    FOREIGN KEY (role_id) REFERENCES "role"(role_id)
+);
+
+CREATE TABLE staff_yard(
+    staff_id INT NOT NULL,
+    yard_id INT NOT NULL,
+    PRIMARY KEY (staff_id, yard_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    FOREIGN KEY (yard_id) REFERENCES yard(yard_id)
+);
+
+CREATE TABLE manafacture(
+    manafacture_id SERIAL PRIMARY KEY,
+    manafacture_name VARCHAR(128) NOT NULL,
+    manafacture_model VARCHAR(64) NOT NULL,
+    manafacture_height DECIMAL(10, 2) NOT NULL,
+    manafacture_length DECIMAL(10, 2) NOT NULL,
+    manafacture_width DECIMAL(10, 2) NOT NULL,
+    manafacture_fuel fuel NOT NULL,
+    manafacture_engine VARCHAR(64) NOT NULL,
+    manafacture_bhp INT(4) NOT NULL,
+    manafacture_hull VARCHAR(64) NOT NULL,
+    manafacture_capacity INT(4) NOT NULL
+);
+
+CREATE TABLE boat(
+    boat_id SERIAL PRIMARY KEY,
+    customer_id INT NOT NULL,
+    manafacture_id INT NOT NULL,
+    boat_mic VARCHAR(50) NOT NULL, -- fix
+    boat_built DATE NOT NULL,
+    boat_oem BOOLEAN NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE "service"(
+    service_id SERIAL PRIMARY KEY,
+    boat_id INT NOT NULL,
+    service_cost DECIMAL(10, 2) NOT NULL,
+    service_type "DESC" NOT NULL,
+    FOREIGN KEY (boat_id) REFERENCES boat(boat_id)
+);
+
+CREATE TABLE staff_service(
+    staff_id INT NOT NULL,
+    service_id INT NOT NULL,
+    PRIMARY KEY (staff_id, service_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    FOREIGN KEY (service_id) REFERENCES "service"(service_id)
+);
+
+CREATE TABLE history(
+    history_id SERIAL PRIMARY KEY,
+    service_id INT NOT NULL,
+    history_type HISTORY_TYPE NOT NULL,
+    history_date DATE NOT NULL,
+    FOREIGN KEY (service_id) REFERENCES "service"(service_id)
 );
