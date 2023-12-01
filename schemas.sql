@@ -38,13 +38,13 @@ CREATE TYPE category_type AS ENUM(
 
 CREATE TABLE country(
     country_id SERIAL PRIMARY KEY,
-    country_name VARCHAR(54) NOT NULL
+    country_name VARCHAR(54) UNIQUE NOT NULL
 );
 
 CREATE TABLE city(
     city_id SERIAL PRIMARY KEY,
     country_id INT NOT NULL,
-    city_name VARCHAR(34) NOT NULL,
+    city_name VARCHAR(34) NOT NULL, -- UNIQUE SHOULD NOT BE HERE AMERICA AND UK SHARE CITIES
     FOREIGN KEY (country_id) REFERENCES country(country_id)
 );
 
@@ -52,18 +52,26 @@ CREATE TABLE "address"(
     address_id SERIAL PRIMARY KEY,
     city_id INT NOT NULL,
     address_postcode VARCHAR(8) NOT NULL,
-    address1 VARCHAR(50) NOT NULL,
-    address2 VARCHAR(50),
+    address_one VARCHAR(50) NOT NULL,
+    address_two VARCHAR(50),
     FOREIGN KEY (city_id) REFERENCES city(city_id)
+);
+
+CREATE TABLE facilities(
+    facilities_id SERIAL PRIMARY KEY,
+    facilities_name VARCHAR(64),
 );
 
 CREATE TABLE yard(
     yard_id SERIAL PRIMARY KEY,
     address_id INT NOT NULL,
-    yard_size ? NOT NULL, -- fix
+    facilities_id INT NOT NULL,
+    yard_size VARCHAR(32) NOT NULL, -- fix
     yard_name VARCHAR(64) NOT NULL,
     yard_tel VARCHAR(20) NOT NULL,
     yard_email VARCHAR(254) NOT NULL
+    FOREIGN KEY (address_id) REFERENCES "address"(address_id),
+    FOREIGN KEY (facilities_id) REFERENCES facilities(facilities_id)
 );
 
 CREATE TABLE customer(
@@ -72,11 +80,11 @@ CREATE TABLE customer(
     customer_fname VARCHAR(64) NOT NULL,
     customer_mname VARCHAR(64),
     customer_lname VARCHAR(64) NOT NULL,
-    customer_tel1 VARCHAR(20) NOT NULL,
+    customer_tel1 VARCHAR(20) UNIQUE NOT NULL,
     customer_tel2 VARCHAR(20),
-    customer_email1 VARCHAR(254) NOT NULL,
+    customer_email1 VARCHAR(254) UNIQUE NOT NULL,
     customer_email2 VARCHAR(254),
-    customer_priv BOOLEAN NOT NULL,
+    customer_priv BOOLEAN DEFAULT 'F',
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -85,10 +93,11 @@ CREATE TABLE staff(
     address_id INT NOT NULL,
     staff_fname VARCHAR(64) NOT NULL,
     staff_mname VARCHAR(64),
-    staff_lname VARCHAR(64), NOT NULL,
-    staff_tel VARCHAR(20) NOT NULL,
-    staff_email VARCHAR(254) NOT NULL,
-    staff_wemail VARCHAR(254) NOT NULL
+    staff_lname VARCHAR(64) NOT NULL,
+    staff_tel VARCHAR(20) UNIQUE NOT NULL,
+    staff_email VARCHAR(254) UNIQUE NOT NULL,
+    staff_wemail VARCHAR(254) UNIQUE NOT NULL
+    FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
 CREATE TABLE "role"( 
@@ -114,7 +123,7 @@ CREATE TABLE staff_yard(
 
 CREATE TABLE manafacture(
     manafacture_id SERIAL PRIMARY KEY,
-    manafacture_name VARCHAR(128) NOT NULL,
+    manafacture_name VARCHAR(128) UNIQUE NOT NULL,
     manafacture_model VARCHAR(64) NOT NULL,
     manafacture_height DECIMAL(10, 2) NOT NULL,
     manafacture_length DECIMAL(10, 2) NOT NULL,
@@ -123,14 +132,16 @@ CREATE TABLE manafacture(
     manafacture_engine VARCHAR(64) NOT NULL,
     manafacture_bhp INT(4) NOT NULL,
     manafacture_hull VARCHAR(64) NOT NULL,
-    manafacture_capacity INT(4) NOT NULL
+    manafacture_capacity INT(4) NOT NULL,
+    manafacture_email VARCHAR(64) UNIQUE NOT NULL,
+    manafacture_phone VARCHAR(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE boat(
     boat_id SERIAL PRIMARY KEY,
     customer_id INT NOT NULL,
     manafacture_id INT NOT NULL,
-    boat_mic VARCHAR(50) NOT NULL, -- fix
+    boat_mic VARCHAR(50) UNIQUE NOT NULL,
     boat_built DATE NOT NULL,
     boat_oem BOOLEAN NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
