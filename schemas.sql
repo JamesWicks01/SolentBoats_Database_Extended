@@ -1,34 +1,30 @@
--- this file is not done
--- a few datatypes need tweaking
--- and constraints also need adding i.e. UNIQUE
-
 --CREATES 
 
-IF EXISTS DROP DATABASE grp21_solent; -- RESET DATABASE
+DROP DATABASE IF EXISTS grp21_solent; -- RESET DATABASE
 
-CREATE DATABASE grp21_solent; -- CREATE
+CREATE DATABASE grp21_solent; -- CREATE \c grp21_solent;
 
 -- ENUMS
 
-CREATE TYPE fuel AS ENUM(
+CREATE TYPE FUEL AS ENUM(
     'PETROL',
     'DIESEL',
     'HYBRID'
 );
 
-CREATE TYPE "desc" AS ENUM(
+CREATE TYPE "DESC" AS ENUM(
     'SERVICE',
     'CHECKUP',
     'OTHER'
 );
 
-CREATE TYPE history_type AS ENUM(
+CREATE TYPE HISTORY_TYPE AS ENUM(
     'BOOKED',
     'ONGOING',
     'COMPLETE'
 );
 
-CREATE TYPE category_type AS ENUM(
+CREATE TYPE CATEGORY_TYPE AS ENUM(
     'MINOR',
     'SERIOUS',
     'DANGEROUS'
@@ -59,7 +55,7 @@ CREATE TABLE "address"(
 
 CREATE TABLE facilities(
     facilities_id SERIAL PRIMARY KEY,
-    facilities_name VARCHAR(64),
+    facilities_name VARCHAR(64)
 );
 
 CREATE TABLE yard(
@@ -69,7 +65,7 @@ CREATE TABLE yard(
     yard_size VARCHAR(32) NOT NULL, -- fix
     yard_name VARCHAR(64) NOT NULL,
     yard_tel VARCHAR(20) NOT NULL,
-    yard_email VARCHAR(254) NOT NULL
+    yard_email VARCHAR(254) NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id),
     FOREIGN KEY (facilities_id) REFERENCES facilities(facilities_id)
 );
@@ -96,7 +92,7 @@ CREATE TABLE staff(
     staff_lname VARCHAR(64) NOT NULL,
     staff_tel VARCHAR(20) UNIQUE NOT NULL,
     staff_email VARCHAR(254) UNIQUE NOT NULL,
-    staff_wemail VARCHAR(254) UNIQUE NOT NULL
+    staff_wemail VARCHAR(254) UNIQUE NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -128,11 +124,11 @@ CREATE TABLE manafacture(
     manafacture_height DECIMAL(10, 2) NOT NULL,
     manafacture_length DECIMAL(10, 2) NOT NULL,
     manafacture_width DECIMAL(10, 2) NOT NULL,
-    manafacture_fuel fuel NOT NULL,
+    manafacture_fuel FUEL NOT NULL,
     manafacture_engine VARCHAR(64) NOT NULL,
-    manafacture_bhp INT(4) NOT NULL,
+    manafacture_bhp INT NOT NULL,
     manafacture_hull VARCHAR(64) NOT NULL,
-    manafacture_capacity INT(4) NOT NULL,
+    manafacture_capacity INT NOT NULL,
     manafacture_email VARCHAR(64) UNIQUE NOT NULL,
     manafacture_phone VARCHAR(20) UNIQUE NOT NULL
 );
@@ -170,3 +166,6 @@ CREATE TABLE history(
     history_date DATE NOT NULL,
     FOREIGN KEY (service_id) REFERENCES "service"(service_id)
 );
+
+-- /d
+-- /dT
