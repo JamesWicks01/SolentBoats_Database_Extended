@@ -15,7 +15,7 @@ CREATE TYPE FUEL AS ENUM(
 CREATE TYPE "DESC" AS ENUM(
     'SERVICE',
     'CHECKUP',
-    'REPAIR'
+    'REPAIR',
     'OTHER'
 );
 
@@ -32,6 +32,7 @@ CREATE TYPE CATEGORY_TYPE AS ENUM(
 );
 
 -- TABLES
+-- THERE ARE 18 TABLES ENSURE THIS IS CORRECT
 
 CREATE TABLE country(
     country_id SERIAL PRIMARY KEY,
@@ -62,7 +63,7 @@ CREATE TABLE facilities(
 CREATE TABLE yard(
     yard_id SERIAL PRIMARY KEY,
     address_id INT NOT NULL,
-    yard_size INT NOT NULL, -- fix
+    yard_size INT NOT NULL, 
     yard_name VARCHAR(64) NOT NULL,
     yard_tel VARCHAR(20) NOT NULL,
     yard_email VARCHAR(50) NOT NULL,
@@ -88,7 +89,7 @@ CREATE TABLE customer(
     customer_tel2 VARCHAR(20),
     customer_email1 VARCHAR(50) UNIQUE NOT NULL,
     customer_email2 VARCHAR(50),
-    customer_priv BOOLEAN DEFAULT 'F' NOT NULL,
+    customer_priv BOOLEAN DEFAULT 'F',
     customer_represent_company VARCHAR(64), 
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
@@ -156,9 +157,9 @@ CREATE TABLE boat(
 CREATE TABLE "service"(
     service_id SERIAL PRIMARY KEY,
     boat_id INT NOT NULL,
-    service_cost DECIMAL(10, 2) NOT NULL,
+    service_cost DECIMAL(10, 2),
     service_type "DESC" NOT NULL,
-    service_note VARCHAR(254)
+    service_note VARCHAR(254),
     FOREIGN KEY (boat_id) REFERENCES boat(boat_id)
 );
 
@@ -168,6 +169,20 @@ CREATE TABLE staff_service(
     PRIMARY KEY (staff_id, service_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
     FOREIGN KEY (service_id) REFERENCES "service"(service_id)
+);
+
+CREATE TABLE fault(
+    fault_id SERIAL PRIMARY KEY,
+    fault_cat CATEGORY_TYPE NOT NULL,
+    fault_name VARCHAR(64)
+);
+
+CREATE TABLE service_fault(
+    service_id INT NOT NULL,
+    fault_id INT NOT NULL,
+    PRIMARY KEY (service_id, fault_id),
+    FOREIGN KEY (service_id) REFERENCES "service"(service_id),
+    FOREIGN KEY (fault_id) REFERENCES fault(fault_id)
 );
 
 CREATE TABLE history(
