@@ -56,7 +56,7 @@ CREATE TABLE "address"(
 
 CREATE TABLE facilities(
     facilities_id SERIAL PRIMARY KEY,
-    facilities_name VARCHAR(64)
+    facilities_name VARCHAR(24)
 );
 
 CREATE TABLE yard(
@@ -65,7 +65,7 @@ CREATE TABLE yard(
     yard_size INT NOT NULL, -- fix
     yard_name VARCHAR(64) NOT NULL,
     yard_tel VARCHAR(20) NOT NULL,
-    yard_email VARCHAR(254) NOT NULL,
+    yard_email VARCHAR(50) NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -86,8 +86,8 @@ CREATE TABLE customer(
     customer_lname VARCHAR(64) NOT NULL,
     customer_tel1 VARCHAR(20) UNIQUE NOT NULL,
     customer_tel2 VARCHAR(20),
-    customer_email1 VARCHAR(254) UNIQUE NOT NULL,
-    customer_email2 VARCHAR(254),
+    customer_email1 VARCHAR(50) UNIQUE NOT NULL,
+    customer_email2 VARCHAR(50),
     customer_priv BOOLEAN DEFAULT 'F' NOT NULL,
     customer_represent_company VARCHAR(64), 
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
@@ -100,8 +100,8 @@ CREATE TABLE staff(
     staff_mname VARCHAR(64),
     staff_lname VARCHAR(64) NOT NULL,
     staff_tel VARCHAR(20) UNIQUE NOT NULL,
-    staff_email VARCHAR(254) UNIQUE NOT NULL,
-    staff_wemail VARCHAR(254) UNIQUE NOT NULL,
+    staff_email VARCHAR(50) UNIQUE NOT NULL,
+    staff_wemail VARCHAR(50) UNIQUE NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -126,31 +126,31 @@ CREATE TABLE staff_yard(
     FOREIGN KEY (yard_id) REFERENCES yard(yard_id)
 );
 
-CREATE TABLE manafacture(
-    manafacture_id SERIAL PRIMARY KEY,
-    manafacture_name VARCHAR(128) UNIQUE NOT NULL,
-    manafacture_model VARCHAR(64) NOT NULL,
-    manafacture_height DECIMAL(10, 2) NOT NULL,
-    manafacture_length DECIMAL(10, 2) NOT NULL,
-    manafacture_width DECIMAL(10, 2) NOT NULL,
-    manafacture_fuel FUEL NOT NULL,
-    manafacture_engine VARCHAR(64) NOT NULL,
-    manafacture_bhp INT NOT NULL,
-    manafacture_hull VARCHAR(64) NOT NULL,
-    manafacture_capacity INT NOT NULL,
-    manafacture_email VARCHAR(64) UNIQUE NOT NULL,
-    manafacture_phone VARCHAR(20) UNIQUE NOT NULL
+CREATE TABLE manufacture(
+    manufacture_id SERIAL PRIMARY KEY,
+    manufacture_name VARCHAR(128) UNIQUE NOT NULL,
+    manufacture_model VARCHAR(64) NOT NULL,
+    manufacture_height DECIMAL(10, 2) NOT NULL,
+    manufacture_length DECIMAL(10, 2) NOT NULL,
+    manufacture_width DECIMAL(10, 2) NOT NULL,
+    manufacture_fuel FUEL NOT NULL,
+    manufacture_engine VARCHAR(32) NOT NULL,
+    manufacture_bhp SMALLINT NOT NULL,
+    manufacture_hull VARCHAR(64) NOT NULL,
+    manufacture_capacity SMALLINT NOT NULL,
+    manufacture_email VARCHAR(64) UNIQUE NOT NULL,
+    manufacture_phone VARCHAR(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE boat(
     boat_id SERIAL PRIMARY KEY,
     customer_id INT NOT NULL,
-    manafacture_id INT NOT NULL,
+    manufacture_id INT NOT NULL,
     boat_mic VARCHAR(50) UNIQUE NOT NULL,
     boat_built DATE NOT NULL,
     boat_oem BOOLEAN NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (manafacture_id) REFERENCES manafacture(manafacture_id)
+    FOREIGN KEY (manufacture_id) REFERENCES manufacture(manufacture_id)
 );
 
 CREATE TABLE "service"(
@@ -158,6 +158,7 @@ CREATE TABLE "service"(
     boat_id INT NOT NULL,
     service_cost DECIMAL(10, 2) NOT NULL,
     service_type "DESC" NOT NULL,
+    service_note VARCHAR(254)
     FOREIGN KEY (boat_id) REFERENCES boat(boat_id)
 );
 
