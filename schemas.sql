@@ -58,6 +58,16 @@ CREATE TABLE facilities(
     facilities_name VARCHAR(64)
 );
 
+CREATE TABLE yard(
+    yard_id SERIAL PRIMARY KEY,
+    address_id INT NOT NULL,
+    yard_size INT NOT NULL, -- fix
+    yard_name VARCHAR(64) NOT NULL,
+    yard_tel VARCHAR(20) NOT NULL,
+    yard_email VARCHAR(254) NOT NULL,
+    FOREIGN KEY (address_id) REFERENCES "address"(address_id)
+);
+
 CREATE TABLE yard_facilities(
     yard_id INT NOT NULL,
     facilities_id INT NOT NULL,
@@ -66,16 +76,6 @@ CREATE TABLE yard_facilities(
     FOREIGN KEY (facilities_id) REFERENCES facilities(facilities_id)
 );
 
-CREATE TABLE yard(
-    yard_id SERIAL PRIMARY KEY,
-    address_id INT NOT NULL,
-    yard_size INT NOT NULL, -- fix
-    yard_name VARCHAR(64) NOT NULL,
-    yard_tel VARCHAR(20) NOT NULL,
-    yard_email VARCHAR(254) NOT NULL,
-    FOREIGN KEY (address_id) REFERENCES "address"(address_id),
-    FOREIGN KEY (facilities_id) REFERENCES facilities(facilities_id)
-);
 
 CREATE TABLE customer(
     customer_id SERIAL PRIMARY KEY,
@@ -87,7 +87,8 @@ CREATE TABLE customer(
     customer_tel2 VARCHAR(20),
     customer_email1 VARCHAR(254) UNIQUE NOT NULL,
     customer_email2 VARCHAR(254),
-    customer_priv BOOLEAN DEFAULT 'F',
+    customer_priv BOOLEAN DEFAULT 'F' NOT NULL,
+    customer_represent_company VARCHAR(64), 
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -147,7 +148,8 @@ CREATE TABLE boat(
     boat_mic VARCHAR(50) UNIQUE NOT NULL,
     boat_built DATE NOT NULL,
     boat_oem BOOLEAN NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (manafacture_id) REFERENCES manafacture(manafacture_id)
 );
 
 CREATE TABLE "service"(
