@@ -825,9 +825,32 @@ VALUES (1, 9);
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (10, 10);
 
-
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (4, 10);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 1);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 2);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 3);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 4);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 5);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 6);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 7);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(9, 8);
 
 
 INSERT INTO history(service_id, history_type, history_date)
@@ -860,8 +883,3 @@ VALUES (3, 'ONGOING', '2021-03-29');
 
 INSERT INTO history(service_id, history_type, history_date)
 VALUES (3, 'COMPLETE', '2021-04-04');
-
--- insert for fault
-
--- and fault history
-
