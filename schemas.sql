@@ -193,5 +193,10 @@ CREATE TABLE history(
     FOREIGN KEY (service_id) REFERENCES "service"(service_id)
 );
 
+-- Currency
+SET lc_monetary = 'en_GB';
+
+-- Indexes
+
 -- /d
 -- /dT

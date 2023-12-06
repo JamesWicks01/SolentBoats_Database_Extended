@@ -182,28 +182,28 @@ INSERT INTO "address" (city_id,
                        address_postcode,
                        address_one,
                        address_two)
-VALUES (5, 'XR21 5TF', '819 Lighthouse Bay Circle', NULL);
+VALUES (1, 'XR21 5TF', '819 Lighthouse Bay Circle', NULL);
 
 
 INSERT INTO "address" (city_id,
                        address_postcode,
                        address_one,
                        address_two)
-VALUES (5, 'LE65 0FT', '64889 Dorton Road', NULL);
+VALUES (2, 'LE65 0FT', '64889 Dorton Road', NULL);
 
 
 INSERT INTO "address" (city_id,
                        address_postcode,
                        address_one,
                        address_two)
-VALUES (5, 'OV67 8VH', '21376 Burning Wood Way', NULL);
+VALUES (3, 'OV67 8VH', '21376 Burning Wood Way', NULL);
 
 
 INSERT INTO "address" (city_id,
                        address_postcode,
                        address_one,
                        address_two)
-VALUES (5, 'YW97 2OB', '64092 Novick Center', NULL);
+VALUES (4, 'YW97 2OB', '64092 Novick Center', NULL);
 
 
 INSERT INTO "address" (city_id,
@@ -839,7 +839,7 @@ VALUES (1, 'ONGOING', '2022-05-11');
 
 
 INSERT INTO history(service_id, history_type, history_date)
-VALUES (1, 'COMPLETED', '2022-05-11');
+VALUES (1, 'COMPLETE', '2022-05-11');
 
 
 INSERT INTO history(service_id, history_type, history_date)
@@ -859,4 +859,9 @@ VALUES (3, 'ONGOING', '2021-03-29');
 
 
 INSERT INTO history(service_id, history_type, history_date)
-VALUES (3, 'COMPLETED', '2021-04-04');
+VALUES (3, 'COMPLETE', '2021-04-04');
+
+-- insert for fault
+
+-- and fault history
+
