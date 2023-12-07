@@ -145,11 +145,14 @@ CREATE TABLE boat(
     boat_id SERIAL PRIMARY KEY,
     customer_id INT NOT NULL,
     manufacture_id INT NOT NULL,
+    country_id INT NOT NULL,
     boat_mic VARCHAR(50) UNIQUE NOT NULL,
     boat_built DATE NOT NULL,
     boat_oem BOOLEAN NOT NULL,
+    boat_registration DATE NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    FOREIGN KEY (manufacture_id) REFERENCES manufacture(manufacture_id)
+    FOREIGN KEY (manufacture_id) REFERENCES manufacture(manufacture_id),
+    FOREIGN KEY (country_id) REFERENCES country(country_id)
 );
 
 CREATE TABLE "service"(

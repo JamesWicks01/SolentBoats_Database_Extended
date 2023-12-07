@@ -673,44 +673,44 @@ INSERT INTO manufacture (manufacture_name, manufacture_model, manufacture_height
 VALUES ('Yost LLC', 'Casuarinaceae', 13.38, 6.36, 13.74, 'HYBRID', 'BDA', 50, 'FLAT-BOTTOM', 15, 'kpuddephatt9@disqus.com', '397-854-7352');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (1, 1, 'WAULFAFH-9DN475697', '2005-08-10', TRUE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (1, 1, 2, 'WAULFAFH-9DN475697', '2005-08-10', TRUE, '2021-11-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (2, 2, '3VWC17AU-6FM469990', '1991-11-13', FALSE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (2, 2, 1, '3VWC17AU-6FM469990', '1991-11-13', FALSE, '2021-12-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (3, 3, '1FTSW3B5-6AE752725', '2001-12-08', FALSE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (3, 3, 2, '1FTSW3B5-6AE752725', '2001-12-08', FALSE, '2022-01-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (4, 4, 'WBAGL635-35D202019', '1988-06-11', TRUE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (4, 4, 3, 'WBAGL635-35D202019', '1988-06-11', TRUE, '2022-02-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (5, 5, '1GD22ZCG-3CZ329528', '2001-09-22', FALSE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (5, 5, 3, '1GD22ZCG-3CZ329528', '2001-09-22', FALSE, '2022-03-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (6, 6, '4T1BD1EB-4EU973939', '2004-11-12', TRUE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (6, 6, 2, '4T1BD1EB-4EU973939', '2004-11-12', TRUE, '2022-04-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (7, 7, '1FTEW1CW-9AK364012', '2008-10-16', TRUE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (7, 7, 1, '1FTEW1CW-9AK364012', '2008-10-16', TRUE, '2022-05-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (8, 8, '1FAHP3HN-3AW561264', '2019-05-17', FALSE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
+VALUES (8, 8, 3, '1FAHP3HN-3AW561264', '2019-05-17', FALSE, '2022-06-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (9, 9, '5UXFG2C5-0E0036379', '1996-04-14', TRUE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem)
+VALUES (9, 9, 2, '5UXFG2C5-0E0036379', '1996-04-14', TRUE, '2022-07-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
-VALUES (10, 10, '3N1CN7AP-3EK123345', '2008-12-07', FALSE);
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem)
+VALUES (10, 10, 1, '3N1CN7AP-3EK123345', '2008-12-07', FALSE, '2022-08-01');
 
 
 INSERT INTO service (boat_id, yard_id, service_cost, service_type)

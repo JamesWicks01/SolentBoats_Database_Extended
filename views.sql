@@ -4,20 +4,8 @@
 
 CREATE MATERIALIZED VIEW customer_services AS
 SELECT
-    CONCAT_WS(
-        ' ',
-        customer_fname,
-        customer_mname,
-        customer_lname
-    ) AS "Customer Name(s)",
-    CONCAT(
-        address_one,
-        COALESCE(', ', NULLIF(address_two, '')),
-        '',
-        city_name,
-        ' ',
-        address_postcode
-    ) AS "Customer Address",
+    CONCAT_WS(' ', customer_fname, customer_mname, customer_lname) AS "Customer Name(s)",
+    CONCAT(address_one, COALESCE(', ', NULLIF(address_two, '')), '', city_name, ' ', address_postcode) AS "Customer Address",
     CONCAT_WS(' : ', customer_email1, customer_tel1) AS "Contact Detail(s)",
     boat_mic AS "Boat Identifer",
     manufacture_model AS "Boat Model",
@@ -43,14 +31,7 @@ CREATE MATERIALIZED VIEW yard_generated AS
 SELECT
     UPPER(y.yard_name) AS "Yard Name",
     CONCAT(CONCAT(y.yard_name, '@solent.com'), ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
-    CONCAT(
-        a.address_one,
-        COALESCE(', ', NULLIF(a.address_two, '')),
-        '',
-        c.city_name,
-        ' ',
-        a.address_postcode
-    ) AS "Yard Address",
+    CONCAT(a.address_one, COALESCE(', ', NULLIF(a.address_two, '')), '', c.city_name, ' ', a.address_postcode) AS "Yard Address",
     COUNT(DISTINCT yf.facilities_id) AS "Facilities",
     COUNT(DISTINCT sy.staff_id) AS "Total of Staff",
     CAST(SUM(DISTINCT service_revenue.service_cost) AS MONEY) AS "Total Revenue"
@@ -67,7 +48,6 @@ FROM
             s.service_cost
         FROM
             "service" s
-            JOIN staff_service ss ON s.service_id = ss.service_id
     ) service_revenue ON y.yard_id = service_revenue.yard_id
 GROUP BY
     y.yard_id,
@@ -86,13 +66,7 @@ SELECT
     service_id AS "Service Identifer",
     service_type AS "Service Type",
     boat_mic AS "Boat Identifer",
-    STRING_AGG(
-        staff_fname || ' ' || staff_mname || ' ' || staff_lname,
-        ', '
-        ORDER BY
-            staff_fname,
-            staff_lname
-    ) AS "Staff Tasked on Repair"
+    STRING_AGG(staff_fname || ' ' || staff_mname || ' ' || staff_lname, ', ' ORDER BY staff_fname, staff_lname) AS "Staff Tasked on Repair"
 FROM
     boat
     JOIN "service" USING (boat_id)
@@ -141,7 +115,7 @@ GROUP BY
     "Staff Name(s)",
     "Staff Email";
 
-
+-- Refresh the View(s)
 REFRESH MATERIALIZED VIEW customer_services;
 REFRESH MATERIALIZED VIEW yard_generated;
 REFRESH MATERIALIZED VIEW staff_services_ongoing;
