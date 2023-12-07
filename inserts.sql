@@ -496,11 +496,14 @@ VALUES ('ELECTRICIAN');
 INSERT INTO role(role_name)
 VALUES ('TECHNICIAN');
 
+
 INSERT INTO role(role_name)
 VALUES ('HULL SPECIALIST');
 
+
 INSERT INTO role(role_name)
 VALUES ('CRANE OPERATOR');
+
 
 INSERT INTO staff_role(staff_id, role_id)
 VALUES (1, 1);
@@ -710,48 +713,57 @@ INSERT INTO boat (customer_id, manufacture_id, boat_mic, boat_built, boat_oem)
 VALUES (10, 10, '3N1CN7AP-3EK123345', '2008-12-07', FALSE);
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (1, 67988, 'CHECKUP');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (1, 1, 67988, 'CHECKUP');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (2, 2361, 'SERVICE');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (2, 1, 2361, 'SERVICE');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (3, 70794, 'REPAIR');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (3, 1, 70794, 'REPAIR');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (4, 98810, 'OTHER');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (4, 2, 98810, 'OTHER');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (5, 86405, 'REPAIR');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (5, 2, 86405, 'REPAIR');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (6, 95640, 'CHECKUP');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (6, 3, 95640, 'CHECKUP');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (7, NULL, 'SERVICE');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (7, 4, NULL, 'SERVICE');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (8, 41240, 'REPAIR');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (8, 5, 41240, 'REPAIR');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (9, 25807, 'REPAIR');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (9, 1, 25807, 'REPAIR');
 
 
-INSERT INTO service (boat_id, service_cost, service_type)
-VALUES (10, 84374, 'OTHER');
+INSERT INTO service (boat_id, yard_id, service_cost, service_type)
+VALUES (10, 1, 84374, 'OTHER');
 
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (2, 1);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES (1, 1);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES (4, 4);
+
+INSERT INTO staff_service (staff_id, service_id)
+VALUES(1, 4);
 
 
 INSERT INTO staff_service (staff_id, service_id)
@@ -817,10 +829,8 @@ VALUES (1, 8);
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (9, 8);
 
-
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (1, 9);
-
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (10, 10);

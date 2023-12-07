@@ -157,10 +157,12 @@ CREATE TABLE boat(
 CREATE TABLE "service"(
     service_id SERIAL PRIMARY KEY,
     boat_id INT NOT NULL,
+    yard_id INT NOT NULL,
     service_cost DECIMAL(10, 2),
     service_type "DESC" NOT NULL,
     service_note VARCHAR(254),
-    FOREIGN KEY (boat_id) REFERENCES boat(boat_id)
+    FOREIGN KEY (boat_id) REFERENCES boat(boat_id),
+    FOREIGN KEY (yard_id) REFERENCES yard(yard_id)
 );
 
 CREATE TABLE staff_service(
@@ -194,9 +196,11 @@ CREATE TABLE history(
 );
 
 -- Currency
-SET lc_monetary = 'en_GB';
+-- SET lc_monetary = 'en_GB'; does not work on VM
 
 -- Indexes
 
--- /d
--- /dT
+
+
+-- \d
+-- \dT

@@ -37,9 +37,11 @@ WHERE
 ORDER BY
     service_cost DESC;
     
---Yard Generated Revenue
+-- Yard Generated Revenue
 
---DROP MATERIALIZED VIEW yard_generated 
+-- DROP MATERIALIZED VIEW yard_generated 
+
+-- FIX THE 
 
 CREATE MATERIALIZED VIEW yard_generated AS
 SELECT
@@ -55,29 +57,31 @@ SELECT
     ) AS "Yard Address",
     COUNT(DISTINCT yf.facilities_id) AS "Facilities",
     COUNT(DISTINCT sy.staff_id) AS "Total of Staff",
-    CAST(tr."Total Revenue" AS MONEY) AS "Total Revenue"
+    CAST(SUM(DISTINCT service_revenue.service_cost) AS MONEY) AS "Total Revenue"
 FROM
-    city c
-    JOIN "address" a ON c.city_id = a.city_id
-    JOIN yard y ON a.address_id = y.address_id
+    yard y
+    JOIN "address" a ON y.address_id = a.address_id
+    JOIN city c ON a.city_id = c.city_id
     JOIN yard_facilities yf ON y.yard_id = yf.yard_id
     JOIN staff_yard sy ON y.yard_id = sy.yard_id
-    JOIN (
+    LEFT JOIN staff_service ss ON sy.staff_id = ss.staff_id
+    LEFT JOIN (
         SELECT
-            sy.yard_id,
-            SUM(s.service_cost) AS "Total Revenue"
+            s.yard_id,
+            s.service_cost
         FROM
-            staff_service ss
-            JOIN "service" s ON ss.service_id = s.service_id
-            JOIN staff_yard sy ON ss.staff_id = sy.staff_id
-        GROUP BY
-            sy.yard_id
-    ) tr ON y.yard_id = tr.yard_id
+            "service" s
+            JOIN staff_service ss ON s.service_id = ss.service_id
+    ) service_revenue ON y.yard_id = service_revenue.yard_id
+WHERE
+    y.yard_id = 2
 GROUP BY
-    y.yard_name,
+    y.yard_id,
+    "Yard Name",
     "Yard Contact Detail(s)",
-    "Yard Address",
-    "Total Revenue";
+    "Yard Address"
+ORDER BY
+    "Yard Name";
     
 --Check Staff who are working on services
 --Staff should ONLY be assigned during the ONGOING stage 
@@ -113,9 +117,9 @@ GROUP BY
 
 CREATE MATERIALIZED VIEW customers_location AS
 SELECT
-    city_name,
-    COUNT(customer_id) AS cus_tot,
-    ROUND(AVG(service_cost), 2) AS service_avg
+    city_name AS "City",
+    COUNT(customer_id) AS "Customer Total",
+    CAST(AVG(service_cost) AS MONEY) AS "Average Cost"
 FROM
     city
     JOIN "address" USING (city_id)
@@ -123,7 +127,7 @@ FROM
     JOIN boat USING (customer_id)
     JOIN "service" USING (boat_id)
 GROUP BY
-    city_name;
+    "City";
 
 -- Yards staff are assigned to, and there roles
 -- DROP MATERIALIZED VIEW 
