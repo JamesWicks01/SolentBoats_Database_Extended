@@ -66,7 +66,6 @@ CREATE TABLE yard(
     yard_size INT NOT NULL, 
     yard_name VARCHAR(64) NOT NULL,
     yard_tel VARCHAR(20) NOT NULL,
-    yard_email VARCHAR(50) NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 
@@ -102,7 +101,6 @@ CREATE TABLE staff(
     staff_lname VARCHAR(64) NOT NULL,
     staff_tel VARCHAR(20) UNIQUE NOT NULL,
     staff_email VARCHAR(50) UNIQUE NOT NULL,
-    staff_wemail VARCHAR(50) UNIQUE NOT NULL,
     FOREIGN KEY (address_id) REFERENCES "address"(address_id)
 );
 

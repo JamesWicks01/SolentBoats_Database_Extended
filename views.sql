@@ -1,6 +1,5 @@
 --VIEWS
 --Check which Customers have had a service completed 
-
 --DROP MATERIALIZED VIEW customer_services 
 
 CREATE MATERIALIZED VIEW customer_services AS
@@ -38,15 +37,12 @@ ORDER BY
     service_cost DESC;
     
 -- Yard Generated Revenue
-
 -- DROP MATERIALIZED VIEW yard_generated 
-
--- FIX THE 
 
 CREATE MATERIALIZED VIEW yard_generated AS
 SELECT
     UPPER(y.yard_name) AS "Yard Name",
-    CONCAT(y.yard_email, ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
+    CONCAT(CONCAT(y.yard_name, '@solent.com'), ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
     CONCAT(
         a.address_one,
         COALESCE(', ', NULLIF(a.address_two, '')),
@@ -64,8 +60,8 @@ FROM
     JOIN city c ON a.city_id = c.city_id
     JOIN yard_facilities yf ON y.yard_id = yf.yard_id
     JOIN staff_yard sy ON y.yard_id = sy.yard_id
-    LEFT JOIN staff_service ss ON sy.staff_id = ss.staff_id
-    LEFT JOIN (
+    JOIN staff_service ss ON sy.staff_id = ss.staff_id
+    JOIN (
         SELECT
             s.yard_id,
             s.service_cost
@@ -73,8 +69,6 @@ FROM
             "service" s
             JOIN staff_service ss ON s.service_id = ss.service_id
     ) service_revenue ON y.yard_id = service_revenue.yard_id
-WHERE
-    y.yard_id = 2
 GROUP BY
     y.yard_id,
     "Yard Name",
@@ -85,7 +79,6 @@ ORDER BY
     
 --Check Staff who are working on services
 --Staff should ONLY be assigned during the ONGOING stage 
-
 --DROP MATERIALIZED VIEW staff_services_ongoing 
     
 CREATE MATERIALIZED VIEW staff_services_ongoing AS
@@ -135,6 +128,7 @@ GROUP BY
 CREATE MATERIALIZED VIEW staff_work_yard AS
 SELECT 
     CONCAT_WS(' ', staff_fname, staff_mname, staff_lname) AS "Staff Name(s)",
+    LOWER(CONCAT(staff_fname, '@solent.com')) AS "Staff Email", 
     STRING_AGG(DISTINCT yard_name, ', ') AS "Yard Assigned",
     STRING_AGG(role_name, ', ') AS "Responsibilitie(s)"
 FROM 
@@ -143,7 +137,9 @@ FROM
     JOIN "role" USING (role_id)
     JOIN staff_yard USING (staff_id)
     JOIN yard USING (yard_id)
-GROUP BY "Staff Name(s)";
+GROUP BY 
+    "Staff Name(s)",
+    "Staff Email";
 
 
 REFRESH MATERIALIZED VIEW customer_services;

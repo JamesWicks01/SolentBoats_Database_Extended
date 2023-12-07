@@ -253,24 +253,24 @@ INSERT INTO facilities(facilities_name)
 VALUES ('Painting');
 
 
-INSERT INTO yard(address_id, yard_size, yard_name, yard_tel, yard_email)
-VALUES (21, 50000, 'Yard 1', '01278 24444', 'yard1@solent.com');
+INSERT INTO yard(address_id, yard_size, yard_name, yard_tel)
+VALUES (21, 50000, 'Yard 1', '01278 24444');
 
 
-INSERT INTO yard(address_id, yard_size, yard_name, yard_tel, yard_email)
-VALUES (22, 25000, 'Yard 2', '01278 12345', 'yard2@solent.com');
+INSERT INTO yard(address_id, yard_size, yard_name, yard_tel)
+VALUES (22, 25000, 'Yard 2', '01278 12345');
 
 
-INSERT INTO yard(address_id, yard_size, yard_name, yard_tel, yard_email)
-VALUES (23, 65000, 'Yard 3', '01278 98765', 'yard3@solent.com');
+INSERT INTO yard(address_id, yard_size, yard_name, yard_tel)
+VALUES (23, 65000, 'Yard 3', '01278 98765');
 
 
-INSERT INTO yard(address_id, yard_size, yard_name, yard_tel, yard_email)
-VALUES (24, 20000, 'Yard 4', '01278 45810', 'yard4@solent.com');
+INSERT INTO yard(address_id, yard_size, yard_name, yard_tel)
+VALUES (24, 20000, 'Yard 4', '01278 45810');
 
 
-INSERT INTO yard(address_id, yard_size, yard_name, yard_tel, yard_email)
-VALUES (25, 75000, 'Yard 5', '01278 14741', 'yard5@solent.com');
+INSERT INTO yard(address_id, yard_size, yard_name, yard_tel)
+VALUES (25, 75000, 'Yard 5', '01278 14741');
 
 
 INSERT INTO yard_facilities(yard_id, facilities_id)
@@ -433,44 +433,44 @@ INSERT INTO customer (address_id, customer_fname, customer_mname, customer_lname
 VALUES (10, 'Norene', NULL, 'Jopling', '936-179-5211', '331-106-6422', 'bjopling9@hud.gov', 'djopling9@ebay.co.uk', FALSE, NULL);
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (11, 'Kylie', NULL, 'Leyzell', '220-677-1576', 'kleyzell0@1und1.de', 'jleyzell0@stanford.edu');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (11, 'Kylie', NULL, 'Leyzell', '220-677-1576', 'kleyzell0@1und1.de');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (12, 'Clemmy', NULL, 'Berryann', '878-753-8536', 'kberryann1@multiply.com', 'pberryann1@digg.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (12, 'Clemmy', NULL, 'Berryann', '878-753-8536', 'kberryann1@multiply.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (13, 'Glynis', NULL, 'Cropper', '359-461-4372', 'scropper2@google.com', 'pcropper2@latimes.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (13, 'Glynis', NULL, 'Cropper', '359-461-4372', 'scropper2@google.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (14, 'Boris', NULL, 'Davley', '671-331-8527', 'bdavley3@ucoz.com', 'cdavley3@eventbrite.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (14, 'Boris', NULL, 'Davley', '671-331-8527', 'bdavley3@ucoz.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (15, 'Jehanna', NULL, 'Romeuf', '446-904-4406', 'sromeuf4@php.net', 'sromeuf4@i2i.jp');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (15, 'Jehanna', NULL, 'Romeuf', '446-904-4406', 'sromeuf4@php.net');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (16, 'Ogdan', NULL, 'O''Heffernan', '986-848-1846', 'doheffernan5@unesco.org', 'coheffernan5@wordpress.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (16, 'Ogdan', NULL, 'O''Heffernan', '986-848-1846', 'doheffernan5@unesco.org');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (17, 'Anselm', NULL, 'Dimmock', '738-642-6496', 'ldimmock6@sun.com', 'bdimmock6@twitpic.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (17, 'Anselm', NULL, 'Dimmock', '738-642-6496', 'ldimmock6@sun.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (18, 'Shawn', NULL, 'Scorah', '588-384-5299', 'gscorah7@studiopress.com', 'ascorah7@ezinearticles.com');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (18, 'Shawn', NULL, 'Scorah', '588-384-5299', 'gscorah7@studiopress.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (19, 'Mariele', 'Chloe', 'Cuddon', '199-722-6273', 'ccuddon8@businessinsider.com', 'ccuddon8@odnoklassniki.ru');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (19, 'Mariele', 'Chloe', 'Cuddon', '199-722-6273', 'ccuddon8@businessinsider.com');
 
 
-INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email, staff_wemail)
-VALUES (20, 'Florri', 'Tamar', 'Stretton', '710-211-9533', 'tstretton9@china.com.cn', 'tstretton9@furl.net');
+INSERT INTO staff (address_id, staff_fname, staff_mname, staff_lname, staff_tel, staff_email)
+VALUES (20, 'Florri', 'Tamar', 'Stretton', '710-211-9533', 'tstretton9@china.com.cn');
 
 
 INSERT INTO role(role_name)
@@ -756,11 +756,14 @@ VALUES (10, 1, 84374, 'OTHER');
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (2, 1);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (1, 1);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (4, 4);
+
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(1, 4);
@@ -829,17 +832,22 @@ VALUES (1, 8);
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (9, 8);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (1, 9);
+
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (10, 10);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES (4, 10);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 1);
+
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 2);
@@ -847,17 +855,21 @@ VALUES(9, 2);
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 3);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 4);
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 5);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 6);
 
+
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 7);
+
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 8);
