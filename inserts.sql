@@ -705,11 +705,11 @@ INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built,
 VALUES (8, 8, 3, '1FAHP3HN-3AW561264', '2019-05-17', FALSE, '2022-06-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem)
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
 VALUES (9, 9, 2, '5UXFG2C5-0E0036379', '1996-04-14', TRUE, '2022-07-01');
 
 
-INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem)
+INSERT INTO boat (customer_id, manufacture_id, country_id, boat_mic, boat_built, boat_oem, boat_registration)
 VALUES (10, 10, 1, '3N1CN7AP-3EK123345', '2008-12-07', FALSE, '2022-08-01');
 
 
@@ -869,10 +869,6 @@ VALUES(9, 6);
 
 INSERT INTO staff_service (staff_id, service_id)
 VALUES(9, 7);
-
-
-INSERT INTO staff_service (staff_id, service_id)
-VALUES(9, 8);
 
 
 INSERT INTO history(service_id, history_type, history_date)

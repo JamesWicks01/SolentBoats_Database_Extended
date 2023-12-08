@@ -200,8 +200,8 @@ CREATE TABLE history(
 -- SET lc_monetary = 'en_GB'; does not work on VM
 
 -- Indexes
-
+-- CREATE INDEX
 
 
 -- \d
--- \dT
+-- \d
