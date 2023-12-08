@@ -21,6 +21,7 @@ FROM
     JOIN history USING (service_id)
 WHERE
     history_type = 'COMPLETE'
+    AND history_date BETWEEN '2022-01-01' AND '2022-06-01'
 ORDER BY
     service_cost DESC;
     
