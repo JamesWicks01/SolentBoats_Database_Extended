@@ -902,12 +902,6 @@ VALUES (3, 'BOOKED', '2021-03-24');
 INSERT INTO history(service_id, history_type, history_date)
 VALUES (3, 'ONGOING', '2021-03-29');
 
-
-INSERT INTO history(service_id, history_type, history_date)
-VALUES (3, 'COMPLETE', '2021-04-04');
-
-INSERT INTO history(service_id, history_type, history_date)
-VALUES (6, 'COMPLETE', '2022-04-04');
-
-INSERT INTO history(service_id, history_type, history_date)
-VALUES (8, 'COMPLETE', '2022-04-04');
+-- TRIGGER TEST
+-- INSERT INTO history(service_id, history_type, history_date)
+-- VALUES (3, 'COMPLETE', '2021-04-04');
