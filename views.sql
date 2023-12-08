@@ -32,7 +32,14 @@ CREATE MATERIALIZED VIEW yard_generated AS
 SELECT
     UPPER(y.yard_name) AS "Yard Name",
     CONCAT(CONCAT(y.yard_name, '@solent.com'), ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
-    CONCAT_WS(staff_fname, ' ', staff_lname, ' ', CONCAT(staff_fname, '@solent.com')) AS "Manager",
+    (
+        SELECT CONCAT(s.staff_fname, ' ', s.staff_lname, ' : ', LOWER(CONCAT(s.staff_fname, '@solent.com')))
+        FROM staff_yard sy
+        JOIN staff s ON sy.staff_id = s.staff_id
+        JOIN staff_role sr ON s.staff_id = sr.staff_id
+        JOIN "role" r ON sr.role_id = r.role_id
+        WHERE r.role_name = 'MANAGER' AND sy.yard_id = y.yard_id
+    ) AS "Manager",
     CONCAT(a.address_one, COALESCE(', ', NULLIF(a.address_two, '')), '', c.city_name, ' ', a.address_postcode) AS "Yard Address",
     COUNT(DISTINCT yf.facilities_id) AS "Facilities",
     COUNT(DISTINCT sy.staff_id) AS "Total of Staff",
@@ -45,19 +52,12 @@ FROM
     JOIN staff_yard sy ON y.yard_id = sy.yard_id
     JOIN staff_service ss ON sy.staff_id = ss.staff_id
     JOIN staff s ON sy.staff_id = s.staff_id
-    JOIN staff_role sr ON s.staff_id = sr.staff_id
-    JOIN "role" r ON sr.role_id = r.role_id
     JOIN (
-        SELECT
-            s.yard_id,
-            s.service_cost
-        FROM
-            "service" s
+        SELECT s.yard_id, s.service_cost
+        FROM "service" s
     ) service_revenue ON y.yard_id = service_revenue.yard_id
-    WHERE role_name = 'MANAGER'
 GROUP BY
     y.yard_id,
-    "Manager",
     "Yard Name",
     "Yard Contact Detail(s)",
     "Yard Address"
