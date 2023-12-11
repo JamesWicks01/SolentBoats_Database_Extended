@@ -1236,7 +1236,7 @@ SELECT
         JOIN staff_role sr ON s.staff_id = sr.staff_id
         JOIN "role" r ON sr.role_id = r.role_id
         WHERE r.role_name = 'MANAGER' AND sy.yard_id = y.yard_id
-    ) AS "Manager",
+    ) AS "Manager", -- MANAGER
     CONCAT(a.address_one, COALESCE(', ', NULLIF(a.address_two, '')), '', c.city_name, ' ', a.address_postcode) AS "Yard Address",
     COUNT(DISTINCT yf.facilities_id) AS "Facilities",
     COUNT(DISTINCT sy.staff_id) AS "Total of Staff",
@@ -1249,7 +1249,7 @@ FROM
     JOIN staff_yard sy ON y.yard_id = sy.yard_id
     JOIN staff_service ss ON sy.staff_id = ss.staff_id
     JOIN staff s ON sy.staff_id = s.staff_id
-    JOIN (
+    JOIN ( -- ACCURATE REVENUE
         SELECT s.yard_id, s.service_cost
         FROM "service" s
     ) service_revenue ON y.yard_id = service_revenue.yard_id
@@ -1325,3 +1325,4 @@ REFRESH MATERIALIZED VIEW yard_generated;
 REFRESH MATERIALIZED VIEW staff_services_ongoing;
 REFRESH MATERIALIZED VIEW customers_location;
 REFRESH MATERIALIZED VIEW staff_work_yard;
+
