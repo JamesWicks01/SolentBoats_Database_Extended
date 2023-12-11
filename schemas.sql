@@ -200,8 +200,23 @@ CREATE TABLE history(
 -- SET lc_monetary = 'en_GB'; does not work on VM
 
 -- Indexes
-CREATE INDEX country_name_index ON country (country_name);
-CREATE INDEX city_name_index ON city (city_name);
+CREATE INDEX address_postcode_idx ON "address" (address_postcode);
+CREATE INDEX country_name_idx ON country (country_name);
+CREATE INDEX city_name_idx ON city (city_name);
+CREATE INDEX customer_id_idx ON boat (customer_id);
+CREATE INDEX boat_mic_idx ON boat (boat_mic);
+CREATE INDEX service_boat_id_idx ON "service" (boat_id);
+CREATE INDEX service_type_idx ON "service" (service_type);
+CREATE INDEX yard_name_idx ON yard (yard_name);
+CREATE INDEX customer_tel_idx ON customer (customer_tel1);
+CREATE INDEX customer_email_idx ON customer (customer_email1);
+CREATE INDEX customer_represent_company_idx ON customer (customer_represent_company);
+CREATE INDEX staff_tel_idx ON staff (staff_tel);
+CREATE INDEX staff_email_idx ON staff (staff_email);
+CREATE INDEX history_type_idx ON history (history_type) WHERE history_type = 'COMPLETE';
+CREATE INDEX manufacture_name_idx ON manufacture (manufacture_name);
+CREATE INDEX manufacture_email_idx ON manufacture (manufacture_email);
+CREATE INDEX manufacture_phone_idx ON manufacture (manufacture_phone);
 
 
 -- \d
