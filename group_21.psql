@@ -2,7 +2,8 @@
 
 DROP DATABASE IF EXISTS grp21_solent; -- RESET DATABASE
 
-CREATE DATABASE grp21_solent; -- CREATE \c grp21_solent;
+CREATE DATABASE grp21_solent; -- CREATE 
+\c grp21_solent;
 
 -- ENUMS
 
