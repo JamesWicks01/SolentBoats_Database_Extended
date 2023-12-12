@@ -31,7 +31,7 @@ ORDER BY
 CREATE MATERIALIZED VIEW yard_generated AS
 SELECT
     UPPER(y.yard_name) AS "Yard Name",
-    CONCAT(CONCAT(REPLACe(y.yard_name, ' ', ''), '@solent.com'), ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
+    CONCAT(CONCAT(REPLACE(LOWER(y.yard_name), ' ', ''), '@solent.com'), ' : ', y.yard_tel) AS "Yard Contact Detail(s)",
     (
         SELECT CONCAT(s.staff_fname, ' ', s.staff_lname, ' : ', LOWER(CONCAT(s.staff_fname, '@solent.com')))
         FROM staff_yard sy
