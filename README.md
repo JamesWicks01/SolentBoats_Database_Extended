@@ -18,7 +18,7 @@
 
 - @nordemaen - Functions, Queries, Inserts, Entity Relationship Diagram, and Orchestration
 - @JamesWicks01 - Design, Optimisation, Word Processing, Security, Indexes, and Normalisation
-- @Kru301019 - Insert Draft and Tables.
+- @Kru301019 - Insert Draft and Table Draft.
 
 See contribution graph: [JamesWicks01/SolentBoats_Database_Extended/graphs/contributors](https://github.com/JamesWicks01/SolentBoats_Database_Extended/graphs/contributors)
 
