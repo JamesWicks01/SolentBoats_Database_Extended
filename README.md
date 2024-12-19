@@ -16,9 +16,9 @@
 
 ## Code Ownership and Collaboration
 
-- @nordemaen - Functions, Queries, Inserts, Entity Relationship Diagram, and Orchestration
-- @JamesWicks01 - Design, Optimisation, Word Processing, Security, Indexes, and Normalisation
-- @Kru301019 - Insert Draft and Table Draft.
+- @nordemaen - Table Creation, Functions, Queries and Views, Inserts, Entity Relationship Diagram, Data Dictionary, and Orchestration.
+- @JamesWicks01 - Design, Optimisation, Word Processing, Security, Indexes, Maintanence, and Normalisation.
+- @Kru301019 - Drafting a very basic concept, including an ERD and basic DDL.
 
 See contribution graph: [JamesWicks01/SolentBoats_Database_Extended/graphs/contributors](https://github.com/JamesWicks01/SolentBoats_Database_Extended/graphs/contributors)
 
