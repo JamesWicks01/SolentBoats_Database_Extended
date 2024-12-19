@@ -1,17 +1,20 @@
 ## Project Architecture
 
-*   **README.md:** This document, providing a detailed exposition of the project's purpose, structure, and usage.
-*   **LICENSE:** Specifies the terms of use and distribution for this project (Eclipse Public License - v 2.0).
-*   **data/:** Houses any external data files utilized for populating the database tables.
-*   **ddl/:** Contains scripts written in Data Definition Language (DDL) that define the database's structure:
-    *   **schemas.sql:** Defines the core database schema, including tables, columns, data types, primary and foreign key constraints, and other integrity rules.
-    *   **roles.sql:** Manages user access control by defining specific roles and assigning permissions to those roles.
-    *   **views.sql:** Defines virtual tables (views) that provide simplified or customized perspectives on the underlying data.
-    *   **functions.sql:** Implements stored functions and procedures to encapsulate reusable database logic and enhance data manipulation capabilities.
-*   **dml/:** Contains scripts written in Data Manipulation Language (DML) for managing data within the database:
-    *   **inserts.sql:** Scripts for populating the database tables with initial data sets.
-    *   **optimisation.sql:** Contains SQL statements and commands designed to enhance database performance, such as creating indexes, optimizing queries, or implementing other performance-enhancing strategies.
-*   **main.psql:** A master script that orchestrates the execution of the DDL and DML scripts in the appropriate sequence, ensuring proper database setup and data population.
+```
+├── README.md         # Project documentation
+├── LICENSE           # Eclipse Public License (v 2.0)
+└── data/              # (Optional) External data files
+    └── ...            # Data files (e.g., CSV, JSON)
+└── ddl/                # Data Definition Language scripts
+    ├── schemas.sql     # Core database schema definitions
+    ├── roles.sql       # User roles and permissions (if applicable)
+    ├── views.sql       # Database views (if applicable)
+    └── functions.sql   # Stored functions and procedures
+└── dml/                # Data Manipulation Language scripts
+    ├── inserts.sql     # Scripts for populating database tables
+    └── optimisation.sql   # Database performance optimization scripts
+└── main.psql          # Script for executing DDL and DML scripts
+```
 
 ## Code Ownership and Collaboration
 
