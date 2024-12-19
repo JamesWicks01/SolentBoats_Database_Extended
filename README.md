@@ -3,8 +3,6 @@
 ```
 ├── README.md         # Project documentation
 ├── LICENSE           # Eclipse Public License (v 2.0)
-└── data/              # (Optional) External data files
-    └── ...            # Data files (e.g., CSV, JSON)
 └── ddl/                # Data Definition Language scripts
     ├── schemas.sql     # Core database schema definitions
     ├── roles.sql       # User roles and permissions (if applicable)
@@ -12,7 +10,7 @@
     └── functions.sql   # Stored functions and procedures
 └── dml/                # Data Manipulation Language scripts
     ├── inserts.sql     # Scripts for populating database tables
-    └── optimisation.sql   # Database performance optimization scripts
+    └── optimisation.sql   # Database performance optimisation scripts
 └── main.psql          # Script for executing DDL and DML scripts
 ```
 
@@ -20,7 +18,9 @@
 
 - @nordemaen - Functions, Queries, Inserts, Entity Relationship Diagram, and Orchestration
 - @JamesWicks01 - Design, Optimisation, Word Processing, Security, Indexes, and Normalisation
-- @Kru301019 - Drafting 
+- @Kru301019 - Insert Draft and Tables.
+
+See contribution graph: [JamesWicks01/SolentBoats_Database_Extended/graphs/contributors](https://github.com/JamesWicks01/SolentBoats_Database_Extended/graphs/contributors)
 
 ## Execution Instructions
 
@@ -65,4 +65,4 @@ This project is distributed under the terms of the [Eclipse Public License - v 2
 
 ## Contact Information
 
-For any inquiries or issues regarding this project, please contact open an issue.
+For any inquiries or issues regarding this project, open an issue.
