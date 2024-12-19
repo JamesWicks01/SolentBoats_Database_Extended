@@ -18,8 +18,9 @@
 
 ## Code Ownership and Collaboration
 
-@nordemaen - Functions, Queries, Inserts, Entity Relationship Diagram, and Orchestration
-@JamesWicks01 - Design, Optimisation, Reporting, Security, and Normalisation
+- @nordemaen - Functions, Queries, Inserts, Entity Relationship Diagram, and Orchestration
+- @JamesWicks01 - Design, Optimisation, Word Processing, Security, Indexes, and Normalisation
+- @Kru301019 - Drafting 
 
 ## Execution Instructions
 
